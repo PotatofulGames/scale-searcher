@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpnrlrfigu6n8"]
+
+[ext_resource type="Script" path="res://scenes/entity/player/Player.gd" id="1_dakvn"]
+[ext_resource type="Texture2D" uid="uid://3ipi36cygdd7" path="res://images/entity/player/PlayerSpaceship.png" id="2_8bxt1"]
+
+[sub_resource type="Gradient" id="Gradient_ppl60"]
+colors = PackedColorArray(0.705882, 0.235294, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gqsac"]
+radius = 24.0
+height = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w7nyx"]
+radius = 160.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_dakvn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 60)
+amount = 50
+randomness = 0.5
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+linear_accel_max = 5.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(1, 0.643137, 0.227451, 1)
+color_ramp = SubResource("Gradient_ppl60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8bxt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gqsac")
+
+[node name="Asteroid Pickup Range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid Pickup Range"]
+shape = SubResource("CircleShape2D_w7nyx")
+debug_color = Color(0.445095, 0.50282, 0.850368, 0.42)
+
+[node name="Market Pointer" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Market Pointer"]
+position = Vector2(110, 0)
+points = PackedVector2Array(0, 0, 15, 0, 7.5, -7.5, 15, 0, 7.5, 7.5, 15, 0, 0, 0)
+width = 2.0
+default_color = Color(0, 0.447059, 0.207843, 0.784314)
+
+[connection signal="body_entered" from="Asteroid Pickup Range" to="." method="_on_asteroid_pickup_range_entered"]
+[connection signal="body_exited" from="Asteroid Pickup Range" to="." method="_on_asteroid_pickup_range_exited"]

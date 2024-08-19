@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn0oeqcjubjjd"]
+
+[ext_resource type="Script" path="res://scenes/entity/asteroid/Asteroid.gd" id="1_fot3v"]
+[ext_resource type="Texture2D" uid="uid://4mutvn5snifu" path="res://images/entity/asteroid/SmallAsteroid-1.png" id="2_00gnt"]
+[ext_resource type="Resource" uid="uid://pr6ufwnm0c0d" path="res://resources/asteroid-data/SmallAsteroid.tres" id="2_87w2a"]
+[ext_resource type="Shape2D" uid="uid://de7eifv202oi6" path="res://extras/collision-shapes/SmallAsteroidCollisionShape.tres" id="4_vhyg1"]
+
+[node name="Asteroid" type="CharacterBody2D" groups=["Asteroid"]]
+collision_layer = 2
+collision_mask = 3
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_fot3v")
+asteroidData = ExtResource("2_87w2a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_00gnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("4_vhyg1")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

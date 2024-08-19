@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AsteroidData" load_steps=5 format=3 uid="uid://cy2eymu5qkw72"]
+
+[ext_resource type="Shape2D" uid="uid://tdehj4gg87dn" path="res://extras/collision-shapes/LargeAsteroidCollisionShape.tres" id="1_afy2s"]
+[ext_resource type="Script" path="res://resources/asteroid-data/AsteroidData.gd" id="1_rm6jt"]
+[ext_resource type="Texture2D" uid="uid://bciirlsjqwru0" path="res://images/entity/asteroid/LargeAsteroid-0.png" id="3_e7gej"]
+[ext_resource type="Texture2D" uid="uid://bfr1vlq4f0vyt" path="res://images/entity/asteroid/LargeAsteroid-1.png" id="4_o7ftq"]
+
+[resource]
+script = ExtResource("1_rm6jt")
+scale = "Large"
+sprites = Array[CompressedTexture2D]([ExtResource("3_e7gej"), ExtResource("4_o7ftq")])
+collisionShape = ExtResource("1_afy2s")
+speed = 1.25
+rotationSpeed = 0.5
+minMass = 2500.0
+maxMass = 5000.0

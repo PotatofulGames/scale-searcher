@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AsteroidData" load_steps=5 format=3 uid="uid://pr6ufwnm0c0d"]
+
+[ext_resource type="Shape2D" uid="uid://de7eifv202oi6" path="res://extras/collision-shapes/SmallAsteroidCollisionShape.tres" id="1_kddcj"]
+[ext_resource type="Script" path="res://resources/asteroid-data/AsteroidData.gd" id="1_qen0n"]
+[ext_resource type="Texture2D" uid="uid://c4dswl0q2i21a" path="res://images/entity/asteroid/SmallAsteroid-0.png" id="2_55bmf"]
+[ext_resource type="Texture2D" uid="uid://4mutvn5snifu" path="res://images/entity/asteroid/SmallAsteroid-1.png" id="3_lmqau"]
+
+[resource]
+script = ExtResource("1_qen0n")
+scale = "Small"
+sprites = Array[CompressedTexture2D]([ExtResource("2_55bmf"), ExtResource("3_lmqau")])
+collisionShape = ExtResource("1_kddcj")
+speed = 2.5
+rotationSpeed = 1.5
+minMass = 205.0
+maxMass = 400.0

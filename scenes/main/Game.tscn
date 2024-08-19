@@ -1,0 +1,1081 @@
+[gd_scene load_steps=27 format=3 uid="uid://wujl4xew0sq5"]
+
+[ext_resource type="Texture2D" uid="uid://gp127upx3r3d" path="res://images/environment/background/NightSky.png" id="1_0wvia"]
+[ext_resource type="FontFile" uid="uid://bxjx0s0h2yaea" path="res://extras/fonts/KdamThmorPro-Regular.ttf" id="1_1nw3m"]
+[ext_resource type="PackedScene" uid="uid://bpnrlrfigu6n8" path="res://scenes/entity/player/Player.tscn" id="1_5yipx"]
+[ext_resource type="Script" path="res://scenes/main/MainMenu.gd" id="2_ud2hf"]
+[ext_resource type="PackedScene" uid="uid://l6t0kqgrclkp" path="res://scenes/entity/asteroid/AsteroidSpawner.tscn" id="3_d2spu"]
+[ext_resource type="PackedScene" uid="uid://dx2kglyoa8pcd" path="res://scenes/environment/market/Market.tscn" id="4_ampt6"]
+[ext_resource type="Texture2D" uid="uid://bb5p8c672veaq" path="res://images/logos/PascalThePotato.png" id="7_1c36l"]
+[ext_resource type="Texture2D" uid="uid://cqumc8dawnvy5" path="res://images/logos/PascalThePotato-LookingUp.png" id="8_hk0cu"]
+[ext_resource type="Texture2D" uid="uid://3ipi36cygdd7" path="res://images/entity/player/PlayerSpaceship.png" id="9_843ba"]
+[ext_resource type="Texture2D" uid="uid://3ofcjbbp8uhf" path="res://images/entity/player/PlayerSpaceship-Red.png" id="10_fq663"]
+[ext_resource type="Texture2D" uid="uid://cxch0gjttsjx1" path="res://images/entity/player/PlayerSpaceship-Gold.png" id="11_ted0c"]
+[ext_resource type="AudioStream" uid="uid://cnxwbno0345bu" path="res://extras/music/SpaceMusic.mp3" id="12_58fyc"]
+
+[sub_resource type="Animation" id="Animation_350dd"]
+resource_name = "Blink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gr5ro"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbx5w"]
+_data = {
+"Blink": SubResource("Animation_350dd"),
+"RESET": SubResource("Animation_gr5ro")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhwfk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjaho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xckm0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34cvq"]
+bg_color = Color(0.403922, 0.4, 0.670588, 0.823529)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.529585, 0.542886, 0.732135, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wligq"]
+bg_color = Color(0.505179, 0.429808, 0.187455, 0.823529)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.687182, 0.533753, 0.254698, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vd7ys"]
+bg_color = Color(0.278433, 0.378454, 0.577545, 0.980392)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mak88"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8a4l"]
+
+[sub_resource type="Animation" id="Animation_vi4s7"]
+resource_name = "Begin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Menu/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main Menu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Game UI/Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Game UI:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Game UI/Control2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_utcse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Menu/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main Menu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Game UI/Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Game UI:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Game UI/Control2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yf30"]
+_data = {
+"Begin": SubResource("Animation_vi4s7"),
+"RESET": SubResource("Animation_utcse")
+}
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scale = Vector2(2, 2)
+scroll_scale = Vector2(1.5, 1.5)
+repeat_size = Vector2(640, 360)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("1_0wvia")
+centered = false
+
+[node name="Map Bounds" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map Bounds"]
+build_mode = 1
+polygon = PackedVector2Array(-2500, -2500, 2500, -2500, 2500, 2500, -2500, 2500)
+
+[node name="Line2D" type="Line2D" parent="Map Bounds"]
+points = PackedVector2Array(-2500, -2500, 2500, -2500, 2500, 2500, -2500, 2500, -2500, -2500)
+width = 1.0
+default_color = Color(1, 0.196078, 0.313726, 0.588235)
+
+[node name="Market" parent="." instance=ExtResource("4_ampt6")]
+position = Vector2(-115, -300)
+
+[node name="Asteroid Spawner" parent="." instance=ExtResource("3_d2spu")]
+
+[node name="Player" parent="." instance=ExtResource("1_5yipx")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 360.0
+one_shot = true
+
+[node name="Main Menu" type="CanvasLayer" parent="."]
+script = ExtResource("2_ud2hf")
+
+[node name="Control" type="Control" parent="Main Menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 60
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main Menu/Control/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_1nw3m")
+theme_override_font_sizes/normal_font_size = 64
+text = "Scale Searcher"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Potatoful Games Info" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -99.0
+offset_right = 336.0
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main Menu/Control/Potatoful Games Info"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Potatoful Games Logo" type="TextureButton" parent="Main Menu/Control/Potatoful Games Info/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 88)
+layout_mode = 2
+texture_normal = ExtResource("7_1c36l")
+texture_pressed = ExtResource("7_1c36l")
+texture_hover = ExtResource("8_hk0cu")
+stretch_mode = 4
+
+[node name="Potatoful Games Name" type="Label" parent="Main Menu/Control/Potatoful Games Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 24
+text = "Created By
+Potatoful Games"
+
+[node name="Game Jam Info" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -99.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="GMTK Game Jam Name" type="Label" parent="Main Menu/Control/Game Jam Info"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 24
+text = "Made For The
+GMTK Game Jam 2024"
+horizontal_alignment = 2
+
+[node name="Play Info" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -165.0
+offset_right = 207.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Control/Play Info"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main Menu/Control/Play Info/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_1nw3m")
+theme_override_font_sizes/normal_font_size = 28
+text = "Press Any Key To Begin"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Best Score" type="Label" parent="Main Menu/Control/Play Info/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 18
+text = "Your Best Score: $0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play Info Blink" type="AnimationPlayer" parent="Main Menu/Control/Play Info"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_fbx5w")
+}
+
+[node name="Shop" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Control/Shop"]
+layout_mode = 2
+
+[node name="Shop Button" type="Button" parent="Main Menu/Control/Shop/VBoxContainer"]
+self_modulate = Color(1, 0.898039, 0.423529, 1)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xhwfk")
+toggle_mode = true
+text = "Shop"
+
+[node name="Shop Panel" type="Panel" parent="Main Menu/Control/Shop/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.898039, 0.423529, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Shop Name" type="Label" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="Purple Spaceship Label" type="Label" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+Purple Spaceship"
+horizontal_alignment = 1
+
+[node name="Purple Spaceship Buy" type="Button" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rjaho")
+text = "Equipped"
+
+[node name="Purple Spaceship Texture" type="TextureRect" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_843ba")
+expand_mode = 5
+
+[node name="Red Spaceship Label" type="Label" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+Red Spaceship"
+horizontal_alignment = 1
+
+[node name="Red Spaceship Buy" type="Button" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rjaho")
+text = "Buy - $5,000,000"
+
+[node name="Red Spaceship Texture" type="TextureRect" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_fq663")
+expand_mode = 5
+
+[node name="Gold Spaceship Label" type="Label" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+Gold Spaceship"
+horizontal_alignment = 1
+
+[node name="Gold Spaceship Buy" type="Button" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rjaho")
+text = "Buy - $100,000,000"
+
+[node name="Gold Spaceship Texture" type="TextureRect" parent="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_ted0c")
+expand_mode = 5
+
+[node name="Total Cash" type="Label" parent="Main Menu/Control/Shop/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "Cash: $0"
+horizontal_alignment = 1
+
+[node name="About Button Container" type="MarginContainer" parent="Main Menu/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Control/About Button Container"]
+layout_mode = 2
+
+[node name="About Button" type="Button" parent="Main Menu/Control/About Button Container/VBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xckm0")
+toggle_mode = true
+text = "About/Credits"
+
+[node name="About Info" type="Panel" parent="Main Menu/Control/About Button Container/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Game Title Label" type="Label" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "Scale Searcher"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Potatoful Games" type="HBoxContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Potatoful Games Link" type="LinkButton" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer/Potatoful Games"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "By Potatoful Games"
+uri = "potatofulgames.com"
+
+[node name="About Label" type="Label" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+Made For The GMTK Game Jam 2024 (Theme: Built To Scale)
+
+Made With The Godot Engine"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Godot License" type="HBoxContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Godot License Link" type="LinkButton" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer/Godot License"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "godotengine.org/license"
+uri = "godotengine.org/license"
+
+[node name="Licenses Label" type="Label" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+--- LICENSES ---
+This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+-- Godot Third-Party Licenses Link --"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Godot Third Party Licenses" type="HBoxContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Godot Third Party Licenses Link" type="LinkButton" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer/Godot Third Party Licenses"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "GODOT_COPYRIGHT.txt"
+uri = "https://github.com/godotengine/godot/blob/master/COPYRIGHT.txt"
+
+[node name="Font OFL Label" type="Label" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "
+
+-- Kdam Thmor Pro Font OFL --
+Copyright 2022 The Kdam Thmor Project Authors (https://www.github.com/sovichet/kdam-thmor-pro)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+\"Font Software\" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+\"Reserved Font Name\" refers to any names specified as such after the
+copyright statement(s).
+
+\"Original Version\" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+\"Modified Version\" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+\"Author\" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+-- Music From Pixabay --"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Music Info" type="HBoxContainer" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Music Info Link" type="LinkButton" parent="Main Menu/Control/About Button Container/VBoxContainer/About Info/MarginContainer/ScrollContainer/VBoxContainer/Music Info"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "Space By The_Mountain"
+uri = "https://pixabay.com/music/ambient-space-158081/"
+
+[node name="Game UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="Game UI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Game UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -254.0
+offset_bottom = 106.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game UI/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Cash" type="Label" parent="Game UI/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 48
+text = "$0"
+horizontal_alignment = 2
+
+[node name="Time Left" type="Label" parent="Game UI/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 48
+text = "8:00"
+horizontal_alignment = 2
+
+[node name="Control2" type="Control" parent="Game UI"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Game UI/Control2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -135.0
+offset_right = 826.0
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game UI/Control2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Panel" type="Panel" parent="Game UI/Control2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(826, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_34cvq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Game UI/Control2/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Game UI/Control2/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Inventory" type="HBoxContainer" parent="Game UI/Control2/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Panel2" type="Panel" parent="Game UI/Control2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wligq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Game UI/Control2/MarginContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Market Deal" type="Label" parent="Game UI/Control2/MarginContainer/HBoxContainer/Panel2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "MARKET DEAL:
+None"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Market Deal Time Left" type="Label" parent="Game UI/Control2/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+text = "1:00"
+vertical_alignment = 1
+
+[node name="Game Finished Screen" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="Panel" type="Panel" parent="Game Finished Screen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Game Finished Screen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 140
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 140
+
+[node name="Panel" type="Panel" parent="Game Finished Screen/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vd7ys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Finished Screen/Panel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Final Score" type="Label" parent="Game Finished Screen/Panel/MarginContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 64
+text = "Time's Up!
+Your Final Score: $0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play Again" type="Button" parent="Game Finished Screen/Panel/MarginContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mak88")
+text = "Play Again"
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Tutorial/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vd7ys")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 48
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Movement" type="Label" parent="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 24
+text = "Rotate Your Spaceship:
+[A] and [S] -- OR -- [<] and [>]
+
+Move Your Spaceship:
+[W] and [S] -- OR -- [^] and [⌄]
+
+Gather Asteroid:
+Click It When Highlighted"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 24
+text = "1. Search For Various Scaled Asteroids!
+(Small, Medium, Large)
+
+2. Trade Them For Cash At The Market.
+(Every Minute, A Specific Asteroid Size
+Will Have Its Value Increased)
+
+3. Earn As Much As You Can Before
+Time Runs Out!"
+horizontal_alignment = 1
+
+[node name="Begin" type="Button" parent="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_1nw3m")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n8a4l")
+text = "Begin"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3yf30")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_58fyc")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="Player" method="_on_game_finished"]
+[connection signal="button_down" from="Main Menu/Control/Potatoful Games Info/HBoxContainer/Potatoful Games Logo" to="Main Menu" method="_on_potatoful_games_logo_button_down"]
+[connection signal="button_up" from="Main Menu/Control/Potatoful Games Info/HBoxContainer/Potatoful Games Logo" to="Main Menu" method="_on_potatoful_games_logo_button_up"]
+[connection signal="toggled" from="Main Menu/Control/Shop/VBoxContainer/Shop Button" to="Main Menu" method="_on_shop_button_toggled"]
+[connection signal="pressed" from="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer/Purple Spaceship Buy" to="Main Menu" method="_on_buy_button_pressed" binds= [&"res://images/entity/player/PlayerSpaceship.png", 0]]
+[connection signal="pressed" from="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer/Red Spaceship Buy" to="Main Menu" method="_on_buy_button_pressed" binds= [&"res://images/entity/player/PlayerSpaceship-Red.png", 5000000]]
+[connection signal="pressed" from="Main Menu/Control/Shop/VBoxContainer/Shop Panel/MarginContainer/ScrollContainer/VBoxContainer/Gold Spaceship Buy" to="Main Menu" method="_on_buy_button_pressed" binds= [&"res://images/entity/player/PlayerSpaceship-Gold.png", 100000000]]
+[connection signal="toggled" from="Main Menu/Control/About Button Container/VBoxContainer/About Button" to="Main Menu" method="_on_about_button_toggled"]
+[connection signal="pressed" from="Game Finished Screen/Panel/MarginContainer/Panel/VBoxContainer/Play Again" to="Player" method="_on_play_again_pressed"]
+[connection signal="pressed" from="Tutorial/MarginContainer/Panel/MarginContainer/VBoxContainer/Begin" to="Main Menu" method="_on_begin_pressed"]
